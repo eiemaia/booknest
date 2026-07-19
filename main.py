@@ -1,12 +1,13 @@
 from fastapi import FastAPI
 from database import engine, Base
-from routers import locations
+from routers import locations, books
 
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="BookNest API")
 
 app.include_router(locations.router)
+app.include_router(books.router)
 
 @app.get("/")
 def root():
